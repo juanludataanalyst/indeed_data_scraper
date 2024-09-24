@@ -1,0 +1,51 @@
+*.csv
+*.json
+*.html
+data/
+.env
+.Rhistory
+combine_data.py
+
+# Descarta los ficheros checkpoint de notebooks
+.ipynb_checkpoints
+.virtual_documents/*
+
+# Descarta archivos de configuración creados por editores de texto
+.vscode/*
+*.suo
+*.user
+*.sln.docstates
+
+# Descarta archivos temporales
+*.tmp
+*.swp
+
+# Descarta archivos compilados y cache
+*.class
+*.pyc
+__pycache__/
+build/
+dist/
+
+# Descarta archivos generados por herramientas
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Descarta archivos de documentación
+docs/
+
+# Descarta archivos de base de datos
+*.db
+*.sqlite
+
+# Descarta archivos de configuración específicos
+config.json
+database.yml
+
+# Descarta archivos generados por IDEs
+*.idea
+*.iml
+
+# Descarta archivos de caché
+.cache
