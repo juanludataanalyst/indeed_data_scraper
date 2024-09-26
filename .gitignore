@@ -49,3 +49,5 @@ database.yml
 
 # Descarta archivos de caché
 .cache
+call_extrac_skills.py
+load_data.py
