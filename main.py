@@ -1,4 +1,3 @@
-import random
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -7,11 +6,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import TimeoutException
+
+import random
 import json
 from time import sleep
 import traceback
-
-from selenium.common.exceptions import TimeoutException
 
 
 
@@ -113,7 +113,7 @@ def simulate_random_clicks(driver, max_clicks=2):
 
 # Función para generar la URL de búsqueda
 def get_url(position, location, start):
-    template = 'https://www.indeed.com/jobs?q={}&l={}&start={}'
+    template = 'https://www.indeed.com/jobs?q={}&l={}&start={}&sort=date&fromage=14'
     position = position.replace(' ', '+')
     location = location.replace(' ', '+')
     url = template.format(position, location, start)
@@ -161,10 +161,26 @@ for start in range(0, 230, 10):  # Ajusta el rango según la cantidad de página
             company_location = jj.find_element(By.CSS_SELECTOR, ".company_location")
             company_name = company_location.text.strip()
 
+
+               # Sueldo
+            try:
+               salary = driver.find_element(By.XPATH, "//h3[contains(text(), 'Sueldo')]/following-sibling::div").text
+            except:
+               salary = "No especified"
+
+
+                 # Tipo de empleo
+            try:
+               employment_type = driver.find_element(By.XPATH, "//div[@aria-label='Tipo de empleo']").text
+            except:
+                employment_type = "No especified"
+
             jobs_data.append({
                 "title": job_title.text,
                 "company": company_name,
-                "description": job_description.text
+                "description": job_description.text,
+                "salary": salary,
+                "employment_type": employment_type
             })
 
             # Espera aleatoria entre clics

@@ -3,6 +3,7 @@
 *.html
 data/
 .env
+env
 .Rhistory
 combine_data.py
 
