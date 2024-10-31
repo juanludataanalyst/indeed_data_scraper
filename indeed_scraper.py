@@ -38,8 +38,26 @@ def create_driver():
 
 # Función para generar la URL de búsqueda
 def get_url(position, location, start):
-    template = 'https://www.indeed.com/jobs?q={}&l={}&start={}&sort=date&fromage=14'
-    return template.format(position.replace(' ', '+'), location.replace(' ', '+'), start)
+    # URL base por defecto para 'United States'
+    base_url = 'https://www.indeed.com/jobs?q={}&l={}&start={}&sort=date&fromage=14'
+    
+    # Modificar la URL base según el país
+    location_urls = {
+        "spain": 'https://es.indeed.com/jobs?q={}&l={}&start={}&sort=date&fromage=14',
+        "colombia": 'https://co.indeed.com/jobs?q={}&l={}&start={}&sort=date&fromage=14',
+        "united kingdom": 'https://uk.indeed.com/jobs?q={}&l={}&start={}&sort=date&fromage=14',
+        "canada": 'https://ca.indeed.com/jobs?q={}&l={}&start={}&sort=date&fromage=14',
+        "germany": 'https://de.indeed.com/jobs?q={}&l={}&start={}&sort=date&fromage=14',
+        "australia": 'https://au.indeed.com/jobs?q={}&l={}&start={}&sort=date&fromage=14',
+        "singapore": 'https://sg.indeed.com/jobs?q={}&l={}&start={}&sort=date&fromage=14',
+        "india": 'https://in.indeed.com/jobs?q={}&l={}&start={}&sort=date&fromage=14'
+    }
+    
+    # Actualizar la URL base si el país está en el diccionario
+    base_url = location_urls.get(location.lower(), base_url)
+
+    return base_url.format(position.replace(' ', '+'), location.replace(' ', '+'), start)
+
 
 # Función principal para obtener los datos de Indeed
 def get_indeed_data(position, location):
@@ -95,7 +113,7 @@ def get_indeed_data(position, location):
                 sleep(random.uniform(5, 10))
 
             # Guardar los datos en un archivo JSON en la carpeta correspondiente
-            json_file = os.path.join(base_dir, f"{position}_{location}_{start}.json")
+            json_file = os.path.join(base_dir, f"{today}_{position}_{location}_{start}.json")
             with open(json_file, mode='w', encoding='utf-8') as file:
                 json.dump(jobs_data, file, indent=4, ensure_ascii=False)
             print(f"Datos guardados en {json_file}")
