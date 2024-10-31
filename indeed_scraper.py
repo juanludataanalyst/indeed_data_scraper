@@ -59,7 +59,6 @@ def get_url(position, location, start):
     return base_url.format(position.replace(' ', '+'), location.replace(' ', '+'), start)
 
 
-# Función principal para obtener los datos de Indeed
 def get_indeed_data(position, location):
     # Crear la carpeta de salida
     today = date.today()
@@ -73,6 +72,17 @@ def get_indeed_data(position, location):
             url = get_url(position, location, start)
             print(f"Accediendo a la URL: {url}")
             driver.get(url)
+
+            # Intentar aceptar cookies si aparece el aviso
+            try:
+                cookies_button = WebDriverWait(driver, 5).until(
+                    EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Aceptar') or contains(text(), 'Allow') or contains(text(), 'Accept')]"))
+                )
+                cookies_button.click()
+                print("Cookies aceptadas.")
+            except TimeoutException:
+                print("No se encontró el aviso de cookies o ya estaba aceptado.")
+                
             print(driver.title)
             
             jobs_data = []
@@ -94,12 +104,12 @@ def get_indeed_data(position, location):
 
                 try:
                     salary = driver.find_element(By.XPATH, "//h3[contains(text(), 'Sueldo')]/following-sibling::div").text
-                except:
+                except NoSuchElementException:
                     salary = "No especificado"
 
                 try:
                     employment_type = driver.find_element(By.XPATH, "//div[@aria-label='Tipo de empleo']").text
-                except:
+                except NoSuchElementException:
                     employment_type = "No especificado"
 
                 jobs_data.append({
@@ -120,6 +130,7 @@ def get_indeed_data(position, location):
 
             try:
                 next_button = driver.find_element(By.CSS_SELECTOR, '[aria-label="Next Page"]')
+                next_button.click()
                 start += 10
             except NoSuchElementException:
                 print("No hay más páginas.")
