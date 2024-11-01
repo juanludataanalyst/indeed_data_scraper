@@ -1,51 +1,317 @@
+
 import json
 import re
+import os
+
+# Obtener el directorio de trabajo actual
+current_directory = os.getcwd()  # Esto obtiene el directorio actual
+
+# Especificar el nombre del archivo JSON
+file_name = 'US_data_analyst_0.json'
+
+# Combinar el directorio actual con el nombre del archivo
+file_path = os.path.join(current_directory, file_name)
+
+# Cargar el archivo JSON
+try:
+    with open(file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        print(data)  # Imprimir el contenido del archivo JSON
+
+except FileNotFoundError:
+    print(f"Error: El archivo {file_path} no se encontró.")
+except json.JSONDecodeError as e:
+    print(f"Error al leer el archivo JSON: {e}")
 
 
-# JSON de ejemplo (reemplázalo con tu archivo)
-data = [
-    {
-        
-         "title": "Business Analysis Trainee, DCS IT - Spring 2025",
-        "company": "Sony Pictures Entertainment, Inc.\nCulver City, CA",
-        "description": "Our Emerging Talent Programs, which includes Interns, Trainees, and Finance Rotational Associates, offer unique opportunities for students, recent graduates, and emerging talent to work alongside the teams that come together to create movies, TV shows, and other great experiences. These seasonal, paid assignments provide meaningful and productive work that allows you to build on your experience and develop your skills further. You will be provided with challenging tasks, real-world experience, and many educational and social networking opportunities.\n\nThis Spring Trainee position is from January through May 30th (start and end dates are flexible based on your schedule)and all candidates must be able to work 40 hours a week, Monday through Friday in the specified location. This type of opportunity will jump-start your career and prepare you for a career in the desired field. This is not a remote role. A hybrid work option may or may not be available.\nDEPARTMENT DESCRIPTION:\nDistribution & Content Services (DCS) IT provides business process analysis, project-based application, process & reporting enhancements, and break-fix application support. Our development team is comprised of both on and offshore resources.\nDCS manages SPE’s library and distribution operations for all of Sony Pictures Entertainment’s business lines, including theatrical, home entertainment (streaming & physical), broadcast and cable. The division provides services related to the preservation and restoration of assets, mastering and foreign language creation, content manipulation, and file and tape-based delivery to worldwide clients.\n\nRESPONSIBILITIES:\nResponsibilities may include, but are not limited to the following:\nSupporting managers, business analysts, developers, and testers as they define, test & deploy functionality for existing & new systems\nGathering functional requirements and writing user stories with business customers\nCreating & maintaining documentation for new & existing functions, processes, and workflows\nAssisting with data analysis and data cleanup projects which result in meaningful business metrics and efficiencies\nAssisting with defining test cases, staging test data, and executing tests for application & reporting enhancements\nDesigning reports and dashboards to visualize important trends for management\nDesigning wireframes based on business requirements\nQUALIFICATIONS:\nAbility to work 40 hours a week\nAptitude towards learning quickly and having a proactive mindset towards developing solutions and process improvements\nEnthusiasm towards media and entertainment industry\nStrong service orientation and focus; good verbal and written communication skills\nAbility to analyze and define solutions for complex business needs and translate into functional specs\nKnowledge of Microsoft Office (Outlook, Word, Excel, etc.)\nPREFERRED QUALIFICATIONS:\nRelevant experience within this field\nExperience creating business / technical requirement documents\nExperience defining and executing test scripts\nExperience with at least one reporting/visualization tool\nThe anticipated base salary for this position is $27/hour. This role may also qualify for comprehensive benefits. The actual base salary offered will depend on a variety of factors, including without limitation, the qualifications of the individual applicant for the position, years of relevant experience, level of education attained, certifications or other professional licenses held, and if applicable, the location of the position.\nSony Pictures Entertainment is an equal opportunity employer. We evaluate qualified applicants without regard to race, color, religion, sex, national origin, disability, veteran status, age, sexual orientation, gender identity, or other protected characteristics.\nSPE will consider qualified applicants with arrest or conviction records in accordance with applicable law.\nTo request an accommodation for purposes of participating in the hiring process, you may contact us at SPE_Accommodation_Assistance@spe.sony.com.",
-        "salary": "$27 por hora",
-        "employment_type": "Tipo de empleo\nFull-time"
-    }
-]
 
-# Diccionario con tecnologías
+# Diccionario con tecnologías y sus variaciones
 skills = {
-    'sql' : 'SQL', 'python' : 'Python', 'r' : 'R', 'c':'C', 'c#':'C#', 'javascript' : 'JavaScript', 'js':'JS', 'java':'Java', 
-    'scala':'Scala', 'sas' : 'SAS', 'matlab': 'MATLAB', 'c++' : 'C++', 'c/c++' : 'C / C++', 'perl' : 'Perl',
-    'typescript' : 'TypeScript','bash':'Bash','html' : 'HTML','css' : 'CSS','php' : 'PHP','powershell' : 'Powershell',
-    'rust' : 'Rust', 'kotlin' : 'Kotlin','ruby' : 'Ruby','dart' : 'Dart','assembly' :'Assembly',
-    'swift' : 'Swift','vba' : 'VBA','lua' : 'Lua','groovy' : 'Groovy','delphi' : 'Delphi','objective-c' : 'Objective-C',
-    'haskell' : 'Haskell','elixir' : 'Elixir','julia' : 'Julia','clojure': 'Clojure','solidity' : 'Solidity',
-    'lisp' : 'Lisp','f#':'F#','fortran' : 'Fortran','erlang' : 'Erlang','apl' : 'APL','cobol' : 'COBOL',
-    'ocaml': 'OCaml','crystal':'Crystal','javascript/typescript' : 'JavaScript / TypeScript','golang':'Golang',
-    'nosql': 'NoSQL', 'mongodb' : 'MongoDB','t-sql' :'Transact-SQL', 'no-sql' : 'No-SQL','visual_basic' : 'Visual Basic',
-    'pascal':'Pascal', 'mongo' : 'Mongo', 'pl/sql' : 'PL/SQL','sass' :'Sass', 'vb.net' : 'VB.NET','mssql' : 'MSSQL',
-    'airflow': 'Airflow', 'alteryx': 'Alteryx', 'asp.net': 'ASP.NET', 'atlassian': 'Atlassian', 
-    'excel': 'Excel', 'power_bi': 'Power BI', 'tableau': 'Tableau', 'srss': 'SRSS', 'word': 'Word', 
-    'unix': 'Unix', 'vue': 'Vue', 'jquery': 'jQuery', 'linux/unix': 'Linux / Unix', 'seaborn': 'Seaborn', 
-    'microstrategy': 'MicroStrategy', 'spss': 'SPSS', 'visio': 'Visio', 'gdpr': 'GDPR', 'ssrs': 'SSRS', 
-    'spreadsheet': 'Spreadsheet', 'aws': 'AWS', 'hadoop': 'Hadoop', 'ssis': 'SSIS', 'linux': 'Linux', 
-    'sap': 'SAP', 'powerpoint': 'PowerPoint', 'sharepoint': 'SharePoint', 'redshift': 'Redshift', 
-    'snowflake': 'Snowflake', 'qlik': 'Qlik', 'cognos': 'Cognos', 'pandas': 'Pandas', 'spark': 'Spark', 'outlook': 'Outlook',
+    'sql': [
+        'SQL', 'Sql', 'sQl', 'sqL', 'Structured Query Language', 'Structured query language', 
+        'structured query language'
+    ],
+    'python': [
+        'Python', 'PYTHON', 'Py', 'py', 'Python3', 'python 3', 'Python 3.x'
+    ],
+    'r': [
+        'R', 'r', 'R Programming', 'r programming'
+    ],
+    'c': [
+        'C', 'c', 'C Language', 'c language'
+    ],
+    'c#': [
+        'C#', 'c#', 'C Sharp', 'c sharp'
+    ],
+    'javascript': [
+        'JavaScript', 'javascript', 'Java script', 'javaScript', 'JS', 'js', 
+        'ECMAScript', 'ecmascript'
+    ],
+    'js': [
+        'JS', 'js', 'JavaScript'
+    ],
+    'java': [
+        'Java', 'java', 'Java SE', 'java se'
+    ],
+    'scala': [
+        'Scala', 'scala'
+    ],
+    'sas': [
+        'SAS', 'sas', 'Statistical Analysis System', 'statistical analysis system'
+    ],
+    'matlab': [
+        'MATLAB', 'matlab', 'MATLAB Language', 'matlab language'
+    ],
+    'c++': [
+        'C++', 'c++', 'C Plus Plus', 'c plus plus'
+    ],
+    'c/c++': [
+        'C/C++', 'C / C++', 'C and C++', 'c/c++', 'c and c++'
+    ],
+    'perl': [
+        'Perl', 'perl'
+    ],
+    'typescript': [
+        'TypeScript', 'typescript', 'TS', 'ts'
+    ],
+    'bash': [
+        'Bash', 'bash', 'Bourne Again Shell', 'bourne again shell'
+    ],
+    'html': [
+        'HTML', 'html', 'Hypertext Markup Language', 'hypertext markup language'
+    ],
+    'css': [
+        'CSS', 'css', 'Cascading Style Sheets', 'cascading style sheets'
+    ],
+    'php': [
+        'PHP', 'php', 'Hypertext Preprocessor', 'hypertext preprocessor'
+    ],
+    'powershell': [
+        'PowerShell', 'powershell', 'Windows PowerShell', 'windows powershell'
+    ],
+    'rust': [
+        'Rust', 'rust'
+    ],
+    'kotlin': [
+        'Kotlin', 'kotlin'
+    ],
+    'ruby': [
+        'Ruby', 'ruby'
+    ],
+    'dart': [
+        'Dart', 'dart'
+    ],
+    'assembly': [
+        'Assembly', 'assembly', 'Assembly Language', 'assembly language'
+    ],
+    'swift': [
+        'Swift', 'swift'
+    ],
+    'vba': [
+        'VBA', 'vba', 'Visual Basic for Applications', 'visual basic for applications'
+    ],
+    'lua': [
+        'Lua', 'lua'
+    ],
+    'groovy': [
+        'Groovy', 'groovy'
+    ],
+    'delphi': [
+        'Delphi', 'delphi'
+    ],
+    'objective-c': [
+        'Objective-C', 'objective-c', 'Objective C', 'objective c'
+    ],
+    'haskell': [
+        'Haskell', 'haskell'
+    ],
+    'elixir': [
+        'Elixir', 'elixir'
+    ],
+    'julia': [
+        'Julia', 'julia'
+    ],
+    'clojure': [
+        'Clojure', 'clojure'
+    ],
+    'solidity': [
+        'Solidity', 'solidity'
+    ],
+    'lisp': [
+        'Lisp', 'lisp'
+    ],
+    'f#': [
+        'F#', 'f#', 'F Sharp', 'f sharp'
+    ],
+    'fortran': [
+        'Fortran', 'fortran'
+    ],
+    'erlang': [
+        'Erlang', 'erlang'
+    ],
+    'apl': [
+        'APL', 'apl'
+    ],
+    'cobol': [
+        'COBOL', 'cobol'
+    ],
+    'ocaml': [
+        'OCaml', 'ocaml'
+    ],
+    'crystal': [
+        'Crystal', 'crystal'
+    ],
+    'javascript/typescript': [
+        'JavaScript / TypeScript', 'javascript / typescript', 'JS / TS', 
+        'js / ts', 'JavaScript and TypeScript', 'javascript and typescript'
+    ],
+    'golang': [
+        'Golang', 'golang', 'Go', 'go'
+    ],
+    'nosql': [
+        'NoSQL', 'nosql', 'No-SQL', 'no-sql'
+    ],
+    'mongodb': [
+        'MongoDB', 'mongodb'
+    ],
+    't-sql': [
+        'Transact-SQL', 'T-SQL', 't-sql'
+    ],
+    'visual_basic': [
+        'Visual Basic', 'visual basic', 'VB', 'vb'
+    ],
+    'pascal': [
+        'Pascal', 'pascal'
+    ],
+    'mongo': [
+        'Mongo', 'mongo', 'MongoDB'
+    ],
+    'pl/sql': [
+        'PL/SQL', 'pl/sql'
+    ],
+    'sass': [
+        'Sass', 'sass'
+    ],
+    'vb.net': [
+        'VB.NET', 'vb.net', 'Visual Basic .NET', 'visual basic .net'
+    ],
+    'mssql': [
+        'MSSQL', 'mssql', 'Microsoft SQL Server', 'microsoft sql server'
+    ],
+    'airflow': [
+        'Airflow', 'airflow'
+    ],
+    'alteryx': [
+        'Alteryx', 'alteryx'
+    ],
+    'asp.net': [
+        'ASP.NET', 'asp.net'
+    ],
+    'atlassian': [
+        'Atlassian', 'atlassian'
+    ],
+    'excel': [
+        'Excel', 'excel', 'Microsoft Excel', 'microsoft excel'
+    ],
+    'power_bi': [
+        'Power BI', 'power bi'
+    ],
+    'tableau': [
+        'Tableau', 'tableau'
+    ],
+    'srss': [
+        'SRSS', 'srss', 'SQL Server Reporting Services', 'sql server reporting services'
+    ],
+    'word': [
+        'Word', 'word', 'Microsoft Word', 'microsoft word'
+    ],
+    'unix': [
+        'Unix', 'unix'
+    ],
+    'vue': [
+        'Vue', 'vue', 'Vue.js', 'vue.js'
+    ],
+    'jquery': [
+        'jQuery', 'jquery'
+    ],
+    'linux/unix': [
+        'Linux / Unix', 'linux / unix', 'Linux and Unix', 'linux and unix'
+    ],
+    'seaborn': [
+        'Seaborn', 'seaborn'
+    ],
+    'microstrategy': [
+        'MicroStrategy', 'microstrategy'
+    ],
+    'spss': [
+        'SPSS', 'spss'
+    ],
+    'visio': [
+        'Visio', 'visio'
+    ],
+    'gdpr': [
+        'GDPR', 'gdpr', 'General Data Protection Regulation', 'general data protection regulation'
+    ],
+    'ssrs': [
+        'SSRS', 'ssrs', 'SQL Server Reporting Services', 'sql server reporting services'
+    ],
+    'spreadsheet': [
+        'Spreadsheet', 'spreadsheet'
+    ],
+    'aws': [
+        'AWS', 'aws', 'Amazon Web Services', 'amazon web services'
+    ],
+    'hadoop': [
+        'Hadoop', 'hadoop'
+    ],
+    'ssis': [
+        'SSIS', 'ssis', 'SQL Server Integration Services', 'sql server integration services'
+    ],
+    'linux': [
+        'Linux', 'linux'
+    ],
+    'sap': [
+        'SAP', 'sap', 'Systems Applications and Products', 'systems applications and products'
+    ],
+    'powerpoint': [
+        'PowerPoint', 'powerpoint'
+    ],
+    'sharepoint': [
+        'SharePoint', 'sharepoint'
+    ],
+    'redshift': [
+        'Redshift', 'redshift', 'Amazon Redshift', 'amazon redshift'
+    ],
+    'snowflake': [
+        'Snowflake', 'snowflake'
+    ],
+    'qlik': [
+        'Qlik', 'qlik'
+    ],
+    'cognos': [
+        'Cognos', 'cognos'
+    ],
+    'pandas': [
+        'Pandas', 'pandas'
+    ],
+    'spark': [
+        'Spark', 'spark'
+    ],
+    'outlook': [
+        'Outlook', 'outlook', 'Microsoft Outlook', 'microsoft outlook'
+    ],
 }
-
 # Compilar expresiones regulares para cada tecnología
-patterns = {key: re.compile(r'\b' + re.escape(key) + r'\b', re.IGNORECASE) for key in skills}
+patterns = {key: re.compile(r'\b(' + '|'.join(map(re.escape, variations)) + r')\b', re.IGNORECASE) 
+            for key, variations in skills.items()}
 
 # Extraer tecnologías
 def extract_technologies(description):
-    found_technologies = []
+    found_technologies = set()  # Usar un conjunto para evitar duplicados
     for key, pattern in patterns.items():
         if pattern.search(description):
-            found_technologies.append(skills[key])
-    return found_technologies
-
+            found_technologies.add(key)  # Agregar solo la clave (tecnología)
+    return list(found_technologies)  # Convertir el conjunto de vuelta a una lista
 
 # Procesar cada puesto en el JSON
 for job in data:
