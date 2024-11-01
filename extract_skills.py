@@ -1,30 +1,4 @@
 
-import json
-import re
-import os
-
-# Obtener el directorio de trabajo actual
-current_directory = os.getcwd()  # Esto obtiene el directorio actual
-
-# Especificar el nombre del archivo JSON
-file_name = 'US_data_analyst_0.json'
-
-# Combinar el directorio actual con el nombre del archivo
-file_path = os.path.join(current_directory, file_name)
-
-# Cargar el archivo JSON
-try:
-    with open(file_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-        print(data)  # Imprimir el contenido del archivo JSON
-
-except FileNotFoundError:
-    print(f"Error: El archivo {file_path} no se encontró.")
-except json.JSONDecodeError as e:
-    print(f"Error al leer el archivo JSON: {e}")
-
-
-
 # Diccionario con tecnologías y sus variaciones
 skills = {
     'sql': [
@@ -301,9 +275,43 @@ skills = {
         'Outlook', 'outlook', 'Microsoft Outlook', 'microsoft outlook'
     ],
 }
+
+
+
+
+import json
+import re
+import os
+
+# Obtener el directorio de trabajo actual
+current_directory = os.getcwd()  # Esto obtiene el directorio actual
+
+# Especificar el nombre del archivo JSON de entrada y salida
+input_file_name = 'US_data_analyst_0.json'
+output_file_name = 'US_data_analyst_0_skills.json'
+
+# Combinar el directorio actual con los nombres de los archivos
+input_file_path = os.path.join(current_directory, input_file_name)
+output_file_path = os.path.join(current_directory, output_file_name)
+
+# Cargar el archivo JSON de entrada
+try:
+    with open(input_file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+except FileNotFoundError:
+    print(f"Error: El archivo {input_file_path} no se encontró.")
+    exit()
+except json.JSONDecodeError as e:
+    print(f"Error al leer el archivo JSON: {e}")
+    exit()
+
+
+
+
+
+
 # Compilar expresiones regulares para cada tecnología
-patterns = {key: re.compile(r'\b(' + '|'.join(map(re.escape, variations)) + r')\b', re.IGNORECASE) 
-            for key, variations in skills.items()}
+patterns = {key: re.compile(r'\b(' + '|'.join(map(re.escape, variations)) + r')\b', re.IGNORECASE) for key, variations in skills.items()}
 
 # Extraer tecnologías
 def extract_technologies(description):
@@ -313,8 +321,39 @@ def extract_technologies(description):
             found_technologies.add(key)  # Agregar solo la clave (tecnología)
     return list(found_technologies)  # Convertir el conjunto de vuelta a una lista
 
-# Procesar cada puesto en el JSON
+# Procesar cada puesto en el JSON y crear una nueva estructura
+processed_data = []
 for job in data:
+    title = job.get("title", "")
+    company = job.get("company", "")
     description = job.get("description", "")
+    salary = job.get("salary", "No especificado")  # Asumiendo que el salario es parte de los datos
+    employment_type = job.get("employment_type", "No especificado")  # Asumiendo que el tipo de empleo es parte de los datos
     technologies = extract_technologies(description)
-    print(f"Tecnologías para '{job['title']}': {technologies}")
+
+# Extraer la ubicación de la empresa
+    location = company.split('\n')[1] if '\n' in company else "Ubicación no especificada"
+      # Obtener solo la parte de la compañía antes del primer '\n'
+    company_cleaned = company.split('\n')[0] if '\n' in company else company
+
+
+
+
+    # Crear un nuevo diccionario para el puesto procesado
+    processed_job = {
+        "title": title,
+        "company": company_cleaned,
+        "location": location,
+        "skills": technologies,
+        "salary": salary,
+        "employment_type": employment_type
+    }
+    processed_data.append(processed_job)
+
+# Guardar el nuevo JSON en un archivo
+try:
+    with open(output_file_path, 'w', encoding='utf-8') as f:
+        json.dump(processed_data, f, ensure_ascii=False, indent=4)
+    print(f"Datos procesados guardados en: {output_file_path}")
+except Exception as e:
+    print(f"Error al guardar el archivo JSON: {e}")
