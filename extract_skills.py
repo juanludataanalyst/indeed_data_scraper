@@ -1,6 +1,6 @@
 
 # Diccionario con tecnologías y sus variaciones
-skills = {
+skills_analytics = {
     'sql': [
         'SQL', 'Sql', 'sQl', 'sqL', 'Structured Query Language', 'Structured query language', 
         'structured query language'
@@ -21,10 +21,7 @@ skills = {
         'JavaScript', 'javascript', 'Java script', 'javaScript', 'JS', 'js', 
         'ECMAScript', 'ecmascript'
     ],
-    'js': [
-        'JS', 'js', 'JavaScript'
-    ],
-    'java': [
+        'java': [
         'Java', 'java', 'Java SE', 'java se'
     ],
     'scala': [
@@ -51,12 +48,7 @@ skills = {
     'bash': [
         'Bash', 'bash', 'Bourne Again Shell', 'bourne again shell'
     ],
-    'html': [
-        'HTML', 'html', 'Hypertext Markup Language', 'hypertext markup language'
-    ],
-    'css': [
-        'CSS', 'css', 'Cascading Style Sheets', 'cascading style sheets'
-    ],
+   
     'php': [
         'PHP', 'php', 'Hypertext Preprocessor', 'hypertext preprocessor'
     ],
@@ -276,15 +268,456 @@ skills = {
     ],
 }
 
+skills_ = {
+    'sql': [
+        'SQL', 'Sql', 'sQl', 'sqL', 'Structured Query Language', 'structured query language'
+    ],
+    'python': [
+        'Python', 'PYTHON', 'Py', 'py', 'Python3', 'python 3', 'Python 3.x'
+    ],
+    'java': [
+        'Java', 'java', 'Java SE', 'java se', 'Java8', 'java 8'
+    ],
+    'c': [
+        'C', 'c', 'C Language', 'c language'
+    ],
+    'c#': [
+        'C#', 'c#', 'C Sharp', 'c sharp'
+    ],
+    'javascript': [
+        'JavaScript', 'javascript', 'JS', 'js', 'ECMAScript', 'ecmascript'
+    ],
+    'typescript': [
+        'TypeScript', 'typescript', 'TS', 'ts'
+    ],
+    'ruby': [
+        'Ruby', 'ruby', 'Ruby on Rails', 'ruby on rails', 'RoR', 'ror'
+    ],
+    'php': [
+        'PHP', 'php', 'Hypertext Preprocessor', 'hypertext preprocessor'
+    ],
+    'swift': [
+        'Swift', 'swift', 'SwiftUI', 'swiftui'
+    ],
+    'objective-c': [
+        'Objective-C', 'objective-c', 'Objective C', 'objective c'
+    ],
+    'kotlin': [
+        'Kotlin', 'kotlin', 'Android Kotlin', 'android kotlin'
+    ],
+    'scala': [
+        'Scala', 'scala'
+    ],
+    'rust': [
+        'Rust', 'rust'
+    ],
+    'go': [
+        'Go', 'go', 'Golang', 'golang'
+    ],
+    'dart': [
+        'Dart', 'dart', 'Flutter', 'flutter'
+    ],
+    'r': [
+        'R', 'r', 'R Programming', 'r programming'
+    ],
+    'c++': [
+        'C++', 'c++', 'C Plus Plus', 'c plus plus'
+    ],
+    'c/c++': [
+        'C/C++', 'c/c++', 'C and C++', 'c and c++'
+    ],
+    'perl': [
+        'Perl', 'perl'
+    ],
+    'bash': [
+        'Bash', 'bash', 'Shell Scripting', 'shell scripting', 'sh'
+    ],
+ 
+    'sass': [
+        'Sass', 'sass', 'SCSS', 'scss'
+    ],
+    'less': [
+        'Less', 'less'
+    ],
+    'xml': [
+        'XML', 'xml', 'Extensible Markup Language', 'extensible markup language'
+    ],
+    'json': [
+        'JSON', 'json', 'JavaScript Object Notation', 'javascript object notation'
+    ],
+    'docker': [
+        'Docker', 'docker', 'Docker Containers', 'docker containers'
+    ],
+    'kubernetes': [
+        'Kubernetes', 'kubernetes', 'K8s', 'k8s'
+    ],
+    'terraform': [
+        'Terraform', 'terraform', 'IaC', 'iac', 'Infrastructure as Code', 'infrastructure as code'
+    ],
+    'ansible': [
+        'Ansible', 'ansible'
+    ],
+    'jenkins': [
+        'Jenkins', 'jenkins', 'CI/CD', 'ci/cd'
+    ],
+    'travis_ci': [
+        'Travis CI', 'travis ci', 'Travis', 'travis'
+    ],
+    'circleci': [
+        'CircleCI', 'circleci', 'Circle CI', 'circle ci'
+    ],
+    'git': [
+        'Git', 'git', 'Version Control', 'version control', 'GitHub', 'GitLab', 'gitlab', 'github'
+    ],
+    'mercurial': [
+        'Mercurial', 'mercurial', 'HG', 'hg'
+    ],
+    'svn': [
+        'SVN', 'svn', 'Apache Subversion', 'apache subversion'
+    ],
+    'apache': [
+        'Apache', 'apache', 'Apache Server', 'apache server'
+    ],
+    'nginx': [
+        'Nginx', 'nginx', 'Nginx Server', 'nginx server'
+    ],
+    'redis': [
+        'Redis', 'redis'
+    ],
+    'memcached': [
+        'Memcached', 'memcached'
+    ],
+    'elasticsearch': [
+        'Elasticsearch', 'elasticsearch', 'Elastic Search', 'elastic search'
+    ],
+    'aws': [
+        'AWS', 'aws', 'Amazon Web Services', 'amazon web services'
+    ],
+    'azure': [
+        'Azure', 'azure', 'Microsoft Azure', 'microsoft azure'
+    ],
+    'gcp': [
+        'GCP', 'gcp', 'Google Cloud Platform', 'google cloud platform'
+    ],
+    'ibm_cloud': [
+        'IBM Cloud', 'ibm cloud', 'IBM Bluemix', 'ibm bluemix'
+    ],
+    'oracle_cloud': [
+        'Oracle Cloud', 'oracle cloud'
+    ],
+    'hadoop': [
+        'Hadoop', 'hadoop'
+    ],
+    'spark': [
+        'Spark', 'spark', 'Apache Spark', 'apache spark'
+    ],
+    'flink': [
+        'Flink', 'flink', 'Apache Flink', 'apache flink'
+    ],
+    'rabbitmq': [
+        'RabbitMQ', 'rabbitmq'
+    ],
+    'apache_kafka': [
+        'Apache Kafka', 'apache kafka', 'Kafka', 'kafka'
+    ],
+    'graphql': [
+        'GraphQL', 'graphql'
+    ],
+    'rest': [
+        'REST', 'rest', 'Rest API', 'rest api', 'RESTful', 'restful'
+    ],
+    'grpc': [
+        'gRPC', 'grpc', 'Google RPC', 'google rpc'
+    ],
+    'soap': [
+        'SOAP', 'soap', 'Simple Object Access Protocol', 'simple object access protocol'
+    ],
+    'mongodb': [
+        'MongoDB', 'mongodb', 'Mongo', 'mongo'
+    ],
+    'postgresql': [
+        'PostgreSQL', 'postgresql', 'Postgres', 'postgres'
+    ],
+    'mysql': [
+        'MySQL', 'mysql'
+    ],
+    'oracle': [
+        'Oracle', 'oracle', 'Oracle Database', 'oracle database'
+    ],
+    'sqlite': [
+        'SQLite', 'sqlite'
+    ],
+    'mariadb': [
+        'MariaDB', 'mariadb'
+    ],
+    'firebase': [
+        'Firebase', 'firebase'
+    ],
+    'power_bi': [
+        'Power BI', 'power bi'
+    ],
+    'tableau': [
+        'Tableau', 'tableau'
+    ],
+    'qlik': [
+        'Qlik', 'qlik'
+    ],
+    'microstrategy': [
+        'MicroStrategy', 'microstrategy'
+    ],
+    'jira': [
+        'JIRA', 'jira', 'Atlassian JIRA', 'atlassian jira'
+    ],
+    'confluence': [
+        'Confluence', 'confluence', 'Atlassian Confluence', 'atlassian confluence'
+    ],
+    'gitlab_ci': [
+        'GitLab CI', 'gitlab ci'
+    ],
+    'salesforce': [
+        'Salesforce', 'salesforce', 'SFDC', 'sfdc'
+    ],
+    'snowflake': [
+        'Snowflake', 'snowflake'
+    ],
+    'bigquery': [
+        'BigQuery', 'bigquery', 'Google BigQuery', 'google bigquery'
+    ],
+    'cloud_firestore': [
+        'Cloud Firestore', 'cloud firestore', 'Firestore', 'firestore'
+    ],
+    'airflow': [
+        'Airflow', 'airflow'
+    ],
+    'databricks': [
+        'Databricks', 'databricks'
+    ],
+    'pandas': [
+        'Pandas', 'pandas'
+    ],
+    'numpy': [
+        'NumPy', 'numpy'
+    ],
+    'scipy': [
+        'SciPy', 'scipy'
+    ],
+    'matplotlib': [
+        'Matplotlib', 'matplotlib'
+    ],
+    'seaborn': [
+        'Seaborn', 'seaborn'
+    ],
+    'scikit_learn': [
+        'Scikit-learn', 'scikit-learn', 'sklearn', 'sk-learn', 'Sklearn'
+    ],
+    'tensorflow': [
+        'TensorFlow', 'tensorflow'
+    ],
+    'keras': [
+        'Keras', 'keras'
+    ],
+    'pytorch': [
+        'PyTorch', 'pytorch', 'Torch', 'torch'
+    ],
+    'mxnet': [
+        'MXNet', 'mxnet'
+    ],
+    'xgboost': [
+        'XGBoost', 'xgboost'
+    ],
+    'lightgbm': [
+        'LightGBM', 'lightgbm'
+    ],
+    'catboost': [
+        'CatBoost', 'catboost'
+    ]
+}
+
+
+
+skills = {
+    'sql': [
+        'SQL', 'Sql', 'sQl', 'sqL', 'Structured Query Language', 'structured query language'
+    ],
+    'python': [
+        'Python', 'PYTHON', 'Py', 'py', 'Python3', 'python 3', 'Python 3.x'
+    ],
+    'java': [
+        'Java', 'java', 'Java SE', 'java se', 'Java8', 'java 8'
+    ],
+    'c': [
+        'C', 'c', 'C Language', 'c language'
+    ],
+    'c#': [
+        'C#', 'c#', 'C Sharp', 'c sharp'
+    ],
+    'javascript': [
+        'JavaScript', 'javascript', 'JS', 'js', 'ECMAScript', 'ecmascript'
+    ],
+    'typescript': [
+        'TypeScript', 'typescript', 'TS', 'ts'
+    ],
+    'ruby': [
+        'Ruby', 'ruby', 'Ruby on Rails', 'ruby on rails', 'RoR', 'ror'
+    ],
+    'php': [
+        'PHP', 'php', 'Hypertext Preprocessor', 'hypertext preprocessor'
+    ],
+    'swift': [
+        'Swift', 'swift', 'SwiftUI', 'swiftui'
+    ],
+    'objective-c': [
+        'Objective-C', 'objective-c', 'Objective C', 'objective c'
+    ],
+    'kotlin': [
+        'Kotlin', 'kotlin', 'Android Kotlin', 'android kotlin'
+    ],
+    'scala': [
+        'Scala', 'scala'
+    ],
+    'rust': [
+        'Rust', 'rust'
+    ],
+    'go': [
+        'Go', 'go', 'Golang', 'golang'
+    ],
+    'dart': [
+        'Dart', 'dart', 'Flutter', 'flutter'
+    ],
+    'r': [
+        'R', 'r', 'R Programming', 'r programming'
+    ],
+    'c++': [
+        'C++', 'c++', 'C Plus Plus', 'c plus plus'
+    ],
+    'c/c++': [
+        'C/C++', 'c/c++', 'C and C++', 'c and c++'
+    ],
+    'perl': [
+        'Perl', 'perl'
+    ],
+    'bash': [
+        'Bash', 'bash', 'Shell Scripting', 'shell scripting', 'sh'
+    ],
+    'sass': [
+        'Sass', 'sass', 'SCSS', 'scss'
+    ],
+    'less': [
+        'Less', 'less'
+    ],
+    'xml': [
+        'XML', 'xml', 'Extensible Markup Language', 'extensible markup language'
+    ],
+    'json': [
+        'JSON', 'json', 'JavaScript Object Notation', 'javascript object notation'
+    ],
+    'docker': [
+        'Docker', 'docker', 'Docker Containers', 'docker containers'
+    ],
+    'kubernetes': [
+        'Kubernetes', 'kubernetes', 'K8s', 'k8s'
+    ],
+    'terraform': [
+        'Terraform', 'terraform', 'IaC', 'iac', 'Infrastructure as Code', 'infrastructure as code'
+    ],
+    'ansible': [
+        'Ansible', 'ansible'
+    ],
+    'jenkins': [
+        'Jenkins', 'jenkins', 'CI/CD', 'ci/cd'
+    ],
+    'travis_ci': [
+        'Travis CI', 'travis ci', 'Travis', 'travis'
+    ],
+    'circleci': [
+        'CircleCI', 'circleci', 'Circle CI', 'circle ci'
+    ],
+    'git': [
+        'Git', 'git', 'Version Control', 'version control', 'GitHub', 'GitLab', 'gitlab', 'github'
+    ],
+    'mercurial': [
+        'Mercurial', 'mercurial', 'HG', 'hg'
+    ],
+    'svn': [
+        'SVN', 'svn', 'Apache Subversion', 'apache subversion'
+    ],
+    'apache': [
+        'Apache', 'apache', 'Apache Server', 'apache server'
+    ],
+    'nginx': [
+        'Nginx', 'nginx', 'Nginx Server', 'nginx server'
+    ],
+    'aws': [
+        'AWS', 'aws', 'Amazon Web Services', 'amazon web services'
+    ],
+    'hadoop': [
+        'Hadoop', 'hadoop'
+    ],
+    'power_bi': [
+        'Power BI', 'power bi'
+    ],
+    'tableau': [
+        'Tableau', 'tableau'
+    ],
+    'excel': [
+        'Excel', 'excel', 'Microsoft Excel', 'microsoft excel'
+    ],
+    'pandas': [
+        'Pandas', 'pandas'
+    ],
+    'spark': [
+        'Spark', 'spark'
+    ],
+    'r': [
+        'R', 'r', 'R Programming', 'r programming'
+    ],
+    'cybersecurity': [
+        'Cybersecurity', 'cyber security', 'Cyber Security', 'InfoSec', 'Information Security'
+    ],
+    'network_security': [
+        'Network Security', 'network security'
+    ],
+    'encryption': [
+        'Encryption', 'encryption'
+    ],
+    'penetration_testing': [
+        'Penetration Testing', 'penetration testing', 'PenTest', 'pentest'
+    ],
+    'incident_response': [
+        'Incident Response', 'incident response'
+    ],
+    'firewalls': [
+        'Firewalls', 'firewall'
+    ],
+    'malware_analysis': [
+        'Malware Analysis', 'malware analysis'
+    ],
+    'vulnerability_management': [
+        'Vulnerability Management', 'vulnerability management'
+    ],
+    'security_auditing': [
+        'Security Auditing', 'security auditing'
+    ],
+}
+
+
+
+
 import json
 import re
 import os
+import hashlib
 
 # Obtener el directorio de trabajo actual
-current_directory = os.getcwd()  # Esto obtiene el directorio actual
+current_directory = os.getcwd()
 
 # Especificar el directorio de datos
 data_directory = os.path.join(current_directory, 'data')
+
+# Función para generar un identificador único basado en la descripción del trabajo
+def generate_job_id(description):
+    # Usa hashlib para generar un hash a partir de la descripción
+    return hashlib.md5(description.encode('utf-8')).hexdigest()
 
 # Función para procesar archivos JSON en un directorio específico
 def process_json_files(directory):
@@ -334,12 +767,16 @@ def process_json_files(directory):
                         employment_type = job.get("employment_type", "No especificado")
                         technologies = extract_technologies(description)
 
+                        # Generar un job_id único basado en la descripción
+                        job_id = generate_job_id(description)
+
                         # Extraer la ubicación de la empresa
                         location = company.split('\n')[1] if '\n' in company else "Ubicación no especificada"
                         company_cleaned = company.split('\n')[0] if '\n' in company else company
 
                         # Crear un nuevo diccionario para el puesto procesado
                         processed_job = {
+                            "job_id": job_id,
                             "title": title,
                             "company": company_cleaned,
                             "location": location,

@@ -5,6 +5,7 @@ data/
 .env
 env
 .Rhistory
+*.zip
 combine_data.py
 
 # Descarta los ficheros checkpoint de notebooks
@@ -52,3 +53,10 @@ database.yml
 .cache
 call_extrac_skills.py
 load_data.py
+skills2.py
+skills.py
+skills_groups.py
+eda.py
+create_json_rules.py
+create_json_rules_simple.py
+apriori.py
