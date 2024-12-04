@@ -36,6 +36,27 @@ def create_driver():
     print(f"Usando el siguiente User-Agent: {user_agent}")
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
+
+def clear_browser_storage(driver):
+    """
+    Limpia cookies, sessionStorage y localStorage del navegador.
+    """
+    try:
+        # Borrar cookies
+        driver.delete_all_cookies()
+        print("Cookies eliminadas.")
+        
+        # Borrar sessionStorage
+        driver.execute_script("window.sessionStorage.clear();")
+        print("sessionStorage limpiado.")
+        
+        # Borrar localStorage
+        driver.execute_script("window.localStorage.clear();")
+        print("localStorage limpiado.")
+    except Exception as e:
+        print(f"Error al limpiar el almacenamiento del navegador: {e}")
+
+
 # Función para generar la URL de búsqueda
 def get_url(position, location, start):
     # URL base por defecto para 'United States'
@@ -69,6 +90,7 @@ def get_indeed_data(position, location):
     while True:
         driver = create_driver()
         try:
+            clear_browser_storage(driver)
             url = get_url(position, location, start)
             print(f"Accediendo a la URL: {url}")
             driver.get(url)
