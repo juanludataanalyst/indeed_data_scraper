@@ -6,7 +6,7 @@ import plotly.express as px
 import altair as alt
 
 # Cargar los datos desde el archivo CSV
-data = pd.read_csv('skills_data_table.csv')
+data = pd.read_csv('output_data/skills_data_table.csv')
 
 # Configuración de la barra lateral
 with st.sidebar:

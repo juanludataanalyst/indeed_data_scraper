@@ -3,7 +3,7 @@ from mlxtend.frequent_patterns import apriori, association_rules
 import json
 
 # Leer el CSV de habilidades
-skills_df = pd.read_csv('skills_data_table.csv')
+skills_df = pd.read_csv('output_data/skills_data_table.csv')
 
 # Crear una tabla binaria donde cada fila es un título y cada columna una habilidad
 skills_encoded = skills_df.groupby(['title', 'skills']).size().unstack(fill_value=0)
@@ -32,7 +32,7 @@ for _, row in rules.iterrows():
     })
 
 # Guardar el JSON simplificado
-with open('summary_association_rules.json', 'w') as f:
+with open('output_data/summary_association_rules.json', 'w') as f:
     json.dump(simplified_rules, f, indent=4)
 
 print("Archivo JSON simplificado creado.")

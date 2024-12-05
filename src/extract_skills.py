@@ -5,7 +5,7 @@ import hashlib
 
 # Diccionario con tecnologías y sus variaciones
 
-with open('skills_definition.json', 'r') as f:
+with open('data/skills_definition.json', 'r') as f:
   skills = json.load(f)
 
 # Obtener el directorio de trabajo actual
@@ -96,7 +96,8 @@ processed_data = process_json_files(data_directory)
 
 # Guardar el nuevo JSON en un archivo
 output_file_name = 'joined_data.json'
-output_file_path = os.path.join(current_directory, output_file_name)
+output_file_path = os.path.join('output_data', output_file_name)
+
 
 try:
     with open(output_file_path, 'w', encoding='utf-8') as f:

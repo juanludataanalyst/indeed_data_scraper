@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Cargar el JSON en un DataFrame
-json_file_path = 'joined_data.json'  # Cambia esto a la ruta de tu archivo JSON
+json_file_path = 'output_data/joined_data.json'  # Cambia esto a la ruta de tu archivo JSON
 
 # Leer el archivo JSON
 with open(json_file_path, 'r', encoding='utf-8') as f:
