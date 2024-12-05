@@ -64,11 +64,11 @@ if selected == "Skills by Role":
         alt.Chart(df)
         .mark_bar(size=20)  # Tamaño de las barras
         .encode(
-            x=alt.X("percentage:Q", title="Porcentaje (%)"),
+            x=alt.X("percentage:Q", title="Proportion of offers where appears (%)"),
             y=alt.Y(
                 "skill:N",
                 sort="-x",  # Orden descendente
-                title="Habilidad"
+                title="Skill"
             ),
             color=alt.Color(
                 "percentage:Q",

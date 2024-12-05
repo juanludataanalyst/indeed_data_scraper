@@ -95,7 +95,7 @@ def process_json_files(directory):
 processed_data = process_json_files(data_directory)
 
 # Guardar el nuevo JSON en un archivo
-output_file_name = 'joined_data3.json'
+output_file_name = 'joined_data.json'
 output_file_path = os.path.join(current_directory, output_file_name)
 
 try:
