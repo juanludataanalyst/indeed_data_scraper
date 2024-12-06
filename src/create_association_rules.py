@@ -10,7 +10,7 @@ skills_encoded = skills_df.groupby(['title', 'skills']).size().unstack(fill_valu
 skills_encoded = skills_encoded.applymap(lambda x: 1 if x > 0 else 0)  # Convertir a formato binario
 
 # Aplicar el algoritmo Apriori
-frequent_itemsets = apriori(skills_encoded, min_support=0.1, use_colnames=True)
+frequent_itemsets = apriori(skills_encoded, min_support=0.05, use_colnames=True)
 
 # Generar las reglas de asociación
 rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1)

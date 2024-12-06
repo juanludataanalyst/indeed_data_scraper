@@ -19,7 +19,8 @@ with open("output_data/summary_association_rules.json", "r") as file:
 # Convertirlo a un DataFrame
 association_rules_data = pd.DataFrame([
     {
-        "antecedent": rule["antecedents"][0],
+        "antecedent_1": rule["antecedents"][0] if len(rule["antecedents"]) > 0 else None,
+        "antecedent_2": rule["antecedents"][1] if len(rule["antecedents"]) > 1 else None,
         "consequent": rule["consequents"][0],
         "support": rule["support"],
         "confidence": rule["confidence"],
@@ -28,6 +29,7 @@ association_rules_data = pd.DataFrame([
 ])
 
 
+association_rules_data["antecedent"] = association_rules_data[["antecedent_1", "antecedent_2"]].fillna("").apply(lambda x: " y ".join(filter(None, x)), axis=1)
 
 
 
@@ -173,8 +175,8 @@ elif selected == "Skills to learn":
 
         # Mostrar los resultados en texto
     if not filtered_data.empty:
-        for _, row in filtered_data.iterrows():
-            st.write(
+        row  = filtered_data.loc[filtered_data["confidence"].idxmax()]
+        st.write(
     f"""
     ## Recomendación personalizada para tu desarrollo profesional
 
