@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_tags import st_tags
 import pandas as pd
 from streamlit_option_menu import option_menu
 import altair as alt
@@ -168,30 +169,47 @@ elif selected == "Skills to learn":
     #selected_antecedent = st.selectbox("Select a skill (antecedent):", association_rules_data ["antecedent"].unique())
 
     # Crear botones para cada antecedente
-    selected_antecedent = st.radio("Elige una habilidad:", association_rules_data ["antecedent"].unique())
+    #selected_antecedent = st.radio("Elige una habilidad:", association_rules_data ["antecedent"].unique())
 
-    # Filtrar los datos para mostrar el consecuente correspondiente
-    filtered_data = association_rules_data [association_rules_data ["antecedent"] == selected_antecedent]
+    #selected_antecedent = st.multiselect(
+    #"Elige una habilidad:",
+    #options=association_rules_data ["antecedent"].unique(),
+    #max_selections=1  # Limitar a un solo antecedente)
+    
+        # Selector de una habilidad con Streamlit Tags
+    selected_antecedent = st_tags(
+        label="",
+        text="Elige una habilidad:",
+        value=[],
+        suggestions=list(association_rules_data["antecedent"].unique()),
+        maxtags=1  # Limitar a un solo antecedente
+    )
+
+    if not selected_antecedent:  # Caso inicial: No hay selección
+        st.info("Por favor, escribe una habilidad para ver recomendaciones.")
+    else:
+    # Filtrar los datos para el antecedente seleccionado
+        filtered_data = association_rules_data [association_rules_data ["antecedent"] == selected_antecedent[0]]
 
         # Mostrar los resultados en texto
-    if not filtered_data.empty:
-        row  = filtered_data.loc[filtered_data["confidence"].idxmax()]
-        st.write(
-    f"""
-    ## Recomendación personalizada para tu desarrollo profesional
+        if not filtered_data.empty:
+            row  = filtered_data.loc[filtered_data["confidence"].idxmax()]
+            st.write(
+                        f"""
+                        ## Recomendación personalizada para tu desarrollo profesional
 
-    Basándonos en tus conocimientos actuales y en el análisis de miles de ofertas de trabajo, te sugerimos que complementes tu perfil con  **{row['consequent']}**. 
+                        Basándonos en tus conocimientos actuales y en el análisis de miles de ofertas de trabajo, te sugerimos que complementes tu perfil con  **{row['consequent']}**. 
 
-    **¿Por qué esta recomendación?**
+                        **¿Por qué esta recomendación?**
 
-    * **Alta correlación:** El {row['confidence']:.1%} de las veces que aparece '{row['antecedent']}' en una oferta de trabajo, también aparece '{row['consequent']}'.
-    * **Frecuencia conjunta:** Ambas habilidades, '{row['antecedent']}' y '{row['consequent']}', aparecen juntas en un {row['support']:.2%} de las ofertas de trabajo analizadas.
-    * **Impacto en tu empleabilidad:** Al adquirir la habilidad de {row['consequent']}, tus posibilidades de encontrar un empleo que se ajuste a tu perfil se m ultiplicaran por un factor de {row['lift']:.1f}x
+                        * **Alta correlación:** El {row['confidence']:.1%} de las veces que aparece '{row['antecedent']}' en una oferta de trabajo, también aparece '{row['consequent']}'.
+                        * **Frecuencia conjunta:** Ambas habilidades, '{row['antecedent']}' y '{row['consequent']}', aparecen juntas en un {row['support']:.2%} de las ofertas de trabajo analizadas.
+                        * **Impacto en tu empleabilidad:** Al adquirir la habilidad de {row['consequent']}, tus posibilidades de encontrar un empleo que se ajuste a tu perfil se m ultiplicaran por un factor de {row['lift']:.1f}x
 
-    """
-)
-    else:
-        st.write("No hay datos disponibles para la habilidad seleccionada.")
+                        """
+                    )
+        else:
+          st.write("No hay datos disponibles para la habilidad seleccionada.")
 
 elif selected == "Contact":
     st.title("Contacta con Nosotros")
