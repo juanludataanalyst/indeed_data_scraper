@@ -163,16 +163,33 @@ elif selected == "Skills to learn":
 
 
     # Selector de antecedente
-    selected_antecedent = st.selectbox("Select a skill (antecedent):", association_rules_data ["antecedent"].unique())
+    #selected_antecedent = st.selectbox("Select a skill (antecedent):", association_rules_data ["antecedent"].unique())
+
+    # Crear botones para cada antecedente
+    selected_antecedent = st.radio("Elige una habilidad:", association_rules_data ["antecedent"].unique())
 
     # Filtrar los datos para mostrar el consecuente correspondiente
     filtered_data = association_rules_data [association_rules_data ["antecedent"] == selected_antecedent]
 
+        # Mostrar los resultados en texto
     if not filtered_data.empty:
-        st.write("Consequent and Metrics:")
-        st.table(filtered_data[["consequent", "support", "confidence", "lift"]])
+        for _, row in filtered_data.iterrows():
+            st.write(
+    f"""
+    ## Recomendación personalizada para tu desarrollo profesional
+
+    Basándonos en tus conocimientos actuales y en el análisis de miles de ofertas de trabajo, te sugerimos que complementes tu perfil con  **{row['consequent']}**. 
+
+    **¿Por qué esta recomendación?**
+
+    * **Alta correlación:** El {row['confidence']:.1%} de las veces que aparece '{row['antecedent']}' en una oferta de trabajo, también aparece '{row['consequent']}'.
+    * **Frecuencia conjunta:** Ambas habilidades, '{row['antecedent']}' y '{row['consequent']}', aparecen juntas en un {row['support']:.2%} de las ofertas de trabajo analizadas.
+    * **Impacto en tu empleabilidad:** Al adquirir la habilidad de {row['consequent']}, tus posibilidades de encontrar un empleo que se ajuste a tu perfil se m ultiplicaran por un factor de {row['lift']:.1f}x
+
+    """
+)
     else:
-        st.write("No data available for the selected antecedent.")
+        st.write("No hay datos disponibles para la habilidad seleccionada.")
 
 elif selected == "Contact":
     st.title("Contacta con Nosotros")
