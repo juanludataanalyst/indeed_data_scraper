@@ -1,19 +1,42 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 from streamlit_option_menu import option_menu
-import plotly.express as px
 import altair as alt
+import json
 
 # Cargar los datos desde el archivo CSV
 data = pd.read_csv('output_data/skills_data_table.csv')
+
+# Cargar datos reglas de asociacion
+
+import pandas as pd
+import json
+
+# Leer el archivo JSON
+with open("output_data/summary_association_rules.json", "r") as file:
+    rules = json.load(file)
+
+# Convertirlo a un DataFrame
+association_rules_data = pd.DataFrame([
+    {
+        "antecedent": rule["antecedents"][0],
+        "consequent": rule["consequents"][0],
+        "support": rule["support"],
+        "confidence": rule["confidence"],
+        "lift": rule["lift"]
+    } for rule in rules
+])
+
+
+
+
 
 # Configuración de la barra lateral
 with st.sidebar:
     selected = option_menu(
         menu_title="Main Menu",
-        options=[ "Skills by Role", "Contact"],
-        icons=["bar-chart", "envelope"],
+        options=[ "Skills by Role", "Skills to learn","Contact"],
+        icons=["bar-chart","book" ,"envelope"],
         menu_icon="cast",
         default_index=0,
     )
@@ -130,6 +153,26 @@ if selected == "Skills by Role":
     </style>
     """, unsafe_allow_html=True)
 
+
+elif selected == "Skills to learn":
+
+
+    # Título de la aplicación
+    st.title("Skills to Learn")
+
+
+
+    # Selector de antecedente
+    selected_antecedent = st.selectbox("Select a skill (antecedent):", association_rules_data ["antecedent"].unique())
+
+    # Filtrar los datos para mostrar el consecuente correspondiente
+    filtered_data = association_rules_data [association_rules_data ["antecedent"] == selected_antecedent]
+
+    if not filtered_data.empty:
+        st.write("Consequent and Metrics:")
+        st.table(filtered_data[["consequent", "support", "confidence", "lift"]])
+    else:
+        st.write("No data available for the selected antecedent.")
 
 elif selected == "Contact":
     st.title("Contacta con Nosotros")

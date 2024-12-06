@@ -5,6 +5,7 @@ import json
 with open("output_data/joined_data.json", 'r', encoding='utf-8') as f:
     data = json.load(f)
 
+
 # Convertir el JSON a un DataFrame
 df = pd.DataFrame(data)
 
