@@ -1,4 +1,4 @@
-# Indeed Data Scraper with Selenium
+# Indeed Data Scraper using Selenium
 
 Python project that automates the process of scraping job postings from Indeed using Selenium. This tool navigates through job postings, collects job details, and saves them into structured JSON files for analysis.
 
