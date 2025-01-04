@@ -55,6 +55,11 @@ The scraper supports the same countries as the original project:
 - Random delays between actions to reduce the likelihood of being flagged as a bot.  
 - Efficiently handles CAPTCHAs by retrying indefinitely until successful.  
 - Saves data in a structured JSON format for each page, enabling easy processing.  
+- Includes mechanisms to avoid bot detection:  
+  - **Random user agents**.  
+  - **Simulated mouse movements**.  
+  - **Automatic acceptance of cookies**.  
+  - **Random pauses between interactions**.  
 
 ---
 
