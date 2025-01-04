@@ -14,6 +14,8 @@ import os
 from datetime import date
 from time import sleep
 import traceback
+import argparse
+
 
 # Lista de User-Agents (todos de Google Chrome)
 user_agents = [
@@ -162,3 +164,13 @@ def get_indeed_data(position, location):
             traceback.print_exc()
         finally:
             driver.quit()
+
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Fetch job data from Indeed.")
+    parser.add_argument("--role", type=str, required=True, help="Job role to search for.")
+    parser.add_argument("--location", type=str, required=True, help="Job location to search for.")
+    args = parser.parse_args()
+
+    get_indeed_data(args.role, args.location)
