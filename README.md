@@ -36,15 +36,15 @@ Python project that automates the process of scraping job postings from Indeed u
 
 ## 🌎 Supported Countries  
 
-The scraper supports the same countries as the original project:  
-- 🇪🇸 Spain  
-- 🇬🇧 United Kingdom  
-- 🇨🇦 Canada  
-- 🇩🇪 Germany  
-- 🇦🇺 Australia  
-- 🇸🇬 Singapore  
-- 🇮🇳 India  
-- 🇨🇴 Colombia  
+The scraper supports these countries:  
+- 🇪🇸 Spain
+- 🇬🇧 United Kingdom
+- 🇨🇦 Canada
+- 🇩🇪 Germany
+- 🇦🇺 Australia
+- 🇸🇬 Singapore
+- 🇮🇳 India
+- 🇨🇴 Colombia
 
 ---
 
